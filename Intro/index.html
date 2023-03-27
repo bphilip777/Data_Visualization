@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset="utf-8">
+    <title>D3 Page Template</title>
+    <script type="text/javascript", src="../d3.js">
+      // Write your code here
+    </script>
+  </head>
+  <body>
+    <script>
+      // Chain syntax
+      d3.select("body").append("p").text("New paragraph!");
+      // select = css selector - returns reference to first elem in DOM
+      // select ALL = grabs more than one element
+      // append = creates new DOM element and 
+      // text = takes string + inserts it b/w opening + closing tags
+
+      // Chainless
+      var body = d3.select("body");
+      var p = body.append("p");
+      p.text("New paragraph!");
+      
+      // Binding data 
+      // Need data + DOM
+      
+      // Convert data - explains how values of each row of CSV should be typed 
+      var rowConverter = function(d) {
+        return {
+          Food: d.Food,
+          Deliciousness: parseFloat(d.Deliciousness),
+        };
+      }
+
+      // Loading in csv: filepath + callback fn
+      var dataset = [5, 10, 15, 20, 25];
+      d3.csv("food.csv", rowConverter, function(data) {
+        console.log(data);
+      });
+      // D3 is an async fn: 
+      // Either use callback to handle data or global variable
+      var dataset;
+      d3.csv("food.csv", function(data){
+        dataset = data; // once loaded copy to dataset
+        generateVis(); // Calls other functions
+        hideLoadingMsg(); // depends on data 
+      });
+
+      var useDataLater = function() {
+        // Global data will be avvailable here
+      }
+
+      // Second option is handling the error = Correct
+      var dataset3;
+      d3.csv("food.csv", function(error, data){
+        if (error) {
+          console.log(error);
+        } else {
+          console.log(data);
+          dataset = data;
+          generateVis();
+          hideLoadingMsg();
+        }
+      });
+
+      // For TSV or tab-seperated data
+      d3.tsv("food.tsv", function(error, data) {
+        if (error) {
+          console.log(error);
+        } else {
+          console.log(data);
+        }
+      });
+
+      // Mr Data Convert by shancarter - used to convert csv, tsv, to json for easier loading
+      // https://github.com/shancarter/Mr-Data-Converter
+
+    </script>
+  </body>
+</html>
