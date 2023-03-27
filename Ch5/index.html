@@ -1,0 +1,28 @@
+<!DOCTYPE html> 
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+      <title>D3 Page Template</title>
+    <script type="text/javascript" src="../d3.js"></script>
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      var dataset = [5,10,15,20,25];
+      
+      d3.select("body").selectAll("p")
+        .data(dataset) // counts + parses data values
+        .enter() // if more data values than dom elements, creates placeholder values
+        .append("p") // appends p to each placeholder selection
+        .text(function(d) {return d;}) // add test inside p
+        .style("color", function(d) {
+          if (d > 15) {
+            return "red";
+          } else {
+            return "black";
+          }
+        });
+
+    </script>
+  </body>  
+</html>
