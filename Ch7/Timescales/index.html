@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/style.css" rel="stylesheet">
+    <script type="text/javascript" src="../../d3.js"></script>
+  </head>
+  <body>
+    <script type="text/javascript">
+      // Load dataset 
+      let dataset = d3.load_csv();
+
+      // Converting timescales
+      let parseTime = d3.timeParse("%m/%d/%y");
+      parseTime("02/20/17"); // js has error w/ dates before 1969
+      let rowConvert = d => {
+        return {
+          Date: parseTime(d.Date),
+          Amount: parseInt(d.Amount),
+        };
+      }
+
+      let w = 500;
+      let h = 300;
+      let padding = 20;
+
+      let xScale = d3.scaleTime()
+        .domain([d3.min(dataset, d => { return d.Date; }), d3.max(dataset, d=> { return d.Date; })])
+        .range([padding, w-padding]);
+
+      let svg = d3.select("body").append("svg")
+        .attr("width", w)
+        .attr("height", h);
+
+      // let circles = svg.selectAll("")
+    </script>
+  </body>
+</html>>
+
