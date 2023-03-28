@@ -1,0 +1,39 @@
+div.bar {
+  display: inline-block;
+  width: 20px;
+  height: 75px; /* Will be overriden later */
+  background-color: teal;
+}
+
+.axis path,
+.axis line {
+  stroke: teal;
+  shape-rendering: crispEdges;
+}
+
+.axis text {
+  font-family: Optima, Future, sans-serif;
+  font-weight: bold;
+  font-size: 14px;
+  fill: teal;
+}
+
+/*
+Be careful applying CSS to SVGs 
+-there are CSS properties 
+p {
+  color: olive
+}
+
+vs SVG properties 
+-- will not work
+text {
+  color: olive,
+}
+
+-- will work 
+text {
+  fill: olive;
+}
+
+*/
