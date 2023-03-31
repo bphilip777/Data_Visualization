@@ -1,0 +1,30 @@
+.area {
+  fill: #6667AB;
+  stroke: none;
+}
+
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 0.5;
+}
+
+.safeLevel {
+  stroke: #CC2936;
+  stroke-dasharray: 2, 3;
+}
+
+.danger {
+  stroke: #CC2936;
+}
+
+.areaDanger {
+  fill: #CC2936;
+  stroke: none;
+}
+
+.dangerLabel {
+  font-family: Helvetica, sans-serif;
+  font-size: 12px;
+  fill: red;
+}

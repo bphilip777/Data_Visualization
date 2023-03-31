@@ -1,0 +1,18 @@
+/* Enables transiitons */
+/* rect { */
+/*   -moz-transition: all 0.25s; */
+/*   -o-transition: all 0.25s; */
+/*   -webkit-transition: all 025s; */
+/*   transition: all 0.25s; */
+/* } */
+
+/* Basic on hover color change */
+rect:hover {
+  fill:orange;
+}
+
+/* Allows events to be passed through text to bars underneath */
+/* text { */
+/*   pointer-events: none; */
+/* } */
+

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Drawing with Data</title>
+    <!-- Below is external css  tag -->
+    <link rel="stylesheet" href="index.css">
+    <script type="text/javascript" src="../d3.js">
+    </script>
+  </head>
+  <body>
+    <script type="text/javascript">
+     // var dataset = [25,7,5,26,11];
+
+     // var dataset = [ 25, 7, 5, 26, 11, 8, 25, 14, 23, 19,
+     //           14, 11, 22, 29, 11, 13, 12, 17, 18, 10,
+     //           24, 18, 25, 9, 3 ];
+    
+     // Creates random dataset
+     var dataset = [];
+     for(var i=0; i<25; i++) {
+       var newNumber = Math.floor(Math.random() * 30);
+       dataset.push(newNumber);
+     }
+
+     // Div style
+     // HTML attr = any property/value pair b/w element's < > brackets
+     // Common props: Class, Id, Src, width, alt
+     // Use classes for properties shared by multiple elements, apply style rules directly
+      d3.select("body").selectAll("div")
+        .data(dataset)
+        .enter()
+        .append("div")
+        .attr("class", "bar") // equal to .classed("bar", true)
+        .style("height", function(d) {
+         var barHeight = d * 5;
+         return barHeight + "px";
+       }).style("margin-right", function(d){
+         return "2px";
+       });
+
+     </script>  
+  </body>
+</html>
+

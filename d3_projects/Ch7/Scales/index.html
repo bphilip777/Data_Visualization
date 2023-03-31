@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="index.css">
+    <script type="text/javascript" src="../../d3.js"></script>
+  </head>
+  <body>
+    <script type="text/javascript">
+      // Scales = fns that map from input domain to output range
+      // scale = mathematical relationship = no direct visual output
+      // Axes = visual component to represent scale 
+      var w = 500;
+      var h = 100;
+      var dataset = [
+                [5, 20], [480, 90], [250, 50], [100, 33], [330, 95],
+                [410, 12], [475, 44], [25, 67], [85, 21], [220, 88],
+                [600, 150],
+              ];
+      // Goal: Get min/max, map input domain to output range using scales
+      var padding = 20;
+      // Other options: nice, rangeRound, clamp
+      // Other scales: scaleSqrt(), scalePow, scaleLog, scaleQuantize, scaleQuantile, scaleOrdinal, scaleTime
+      var xScale = d3.scaleLinear()
+        .domain([0, d3.max(dataset, d => { return d[0]; })])
+        .range([padding, w-padding])
+        .nice();
+      var yScale = d3.scaleLinear()
+        .domain([0, d3.max(dataset, d => { return d[1]; })])
+        .range([h-padding, padding*2])
+        .nice();
+      var rScale = d3.scaleLinear()
+        .domain([0, d3.max(dataset, d => { return d[1];})])
+        .range([2, 5])
+        .nice();
+      // Auto-performs sqrt for the scale
+      let aScale = d3.scaleSqrt()
+        .domain([0, d3.max(dataset, d => { return d[1]; })])
+        .range([0, 10]);
+
+      // select body      
+      var svg = d3.select("body").append("svg")
+        .attr("width", w)
+        .attr("height", h);
+
+      // scatterplot
+      var circles = svg.selectAll("circles") 
+        .data(dataset)
+        .enter()
+        .append("circle")
+        .attr("cx", d =>{ return xScale(d[0]);})
+        .attr("cy", d => { return yScale(d[1]); })
+        .attr("r", d => { return aScale(d[1]); })
+        .attr("fill", d => { return "rgb(0, 0, " + d[1] + ")"; });
+
+      // label data
+      var text = svg.selectAll("text")
+        .data(dataset)
+        .enter()
+        .append("text")
+        .text(d => {return d[0] + "," + d[1]; })
+        .attr("x", d => { return xScale(d[0]); })
+        .attr("y", d => { return yScale(d[1]); })
+        .attr("font-family", "sans-serif")
+        .attr("font-size", "12px")
+        .attr("fill", "red");
+
+      // Sever command python -m http.server 8888 &.
+    </script>
+  </body>
+</html>
+
+
