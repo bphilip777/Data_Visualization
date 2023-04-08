@@ -1,0 +1,11 @@
+p {
+  display: inline-block;
+}
+
+input {
+  height: 250px;
+  width: 30px;
+
+  -webkit-appearance: slider-vertical;
+  writing-mode: bt-lr;
+}
